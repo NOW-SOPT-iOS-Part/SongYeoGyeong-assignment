@@ -9,7 +9,7 @@ import Foundation
 import SnapKit
 import UIKit
 
-final class LoginView: UIViewController {
+final class LoginView: UIViewController, UITextFieldDelegate {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -142,8 +142,12 @@ final class LoginView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        idTextField.delegate = self
+        passwordTextField.delegate = self
+        
         self.view.backgroundColor = .black
         setLayout()
+        updateLoginButtonState()
     }
     
     private func setLayout() {
@@ -213,5 +217,48 @@ final class LoginView: UIViewController {
             make.height.equalTo(12)
         }
     }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let currentText = textField.text ?? ""
+        guard let stringRange = Range(range, in: currentText) else { return false }
+        let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
+
+        DispatchQueue.main.async {
+            self.updateLoginButtonState()
+        }
+
+        return true
+    }
+
+
+    
+    private func updateLoginButtonState() {
+        DispatchQueue.main.async {
+            let isEnabled = !(self.idTextField.text?.isEmpty ?? true) && !(self.passwordTextField.text?.isEmpty ?? true)
+            self.loginButton.isEnabled = isEnabled
+            if isEnabled {
+                self.loginButton.backgroundColor = UIColor(red: 255/255, green: 20/255, blue: 60/255, alpha: 1)
+                self.loginButton.setTitleColor(UIColor.white, for: .normal)
+            } else {
+                self.loginButton.backgroundColor = UIColor.black
+                self.loginButton.setTitleColor(UIColor(red: 156/255, green: 156/255, blue: 156/255, alpha: 1), for: .normal)
+            }
+        }
+    }
+
+
+
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        updateLoginButtonState()
+    }
+
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        DispatchQueue.main.async {
+            self.updateLoginButtonState()
+        }
+        return true
+    }
+
 }
 

@@ -84,6 +84,7 @@ final class LoginView: UIViewController, UITextFieldDelegate {
         clearButton.setImage(UIImage(named: "X"), for: .normal)
         clearButton.addTarget(self, action: #selector(clearText), for: .touchUpInside)
 
+
         rightViewContainer.addSubview(clearButton)
         rightViewContainer.addSubview(eyeButton)
         
@@ -186,14 +187,20 @@ final class LoginView: UIViewController, UITextFieldDelegate {
         updateLoginButtonState()
     }
     
-    @objc func loginButtonDidTap(){
-      guard let id = idTextField.text, !id.isEmpty else {
-          return
-      }
-      let welcomeViewController = WelcomeViewController()
-      welcomeViewController.id = id
-      self.present(welcomeViewController, animated: true)
+    @objc func loginButtonDidTap() {
+        guard let id = idTextField.text, !id.isEmpty else {
+            return
+        }
+        
+        let welcomeViewController = WelcomeViewController()
+        welcomeViewController.id = id
+        if let navigationController = self.navigationController {
+            navigationController.pushViewController(welcomeViewController, animated: true)
+        } else {
+
+        }
     }
+
     
     private func setLayout() {
         [titleLabel, idTextField, passwordTextField, loginButton, findID, findPW, separatorLabel, noAccount, createNickname].forEach {

@@ -27,7 +27,7 @@ class WelcomeViewController: UIViewController {
         
     }()
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .black
@@ -37,14 +37,14 @@ class WelcomeViewController: UIViewController {
     
     
     private lazy var mainButton: UIButton = {
-            let button = UIButton()
-            button.setTitle("메인으로", for: .normal)
-            button.backgroundColor = UIColor(red: 255/255, green: 20/255, blue: 60/255, alpha: 1)
-            button.setTitleColor(UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1), for: .normal)
-            button.titleLabel?.font = UIFont(name: "Pretendard-SemiBold", size: 18)
-            button.addTarget(self, action: #selector(goToMain), for: .touchUpInside)
-            return button
-        }()
+        let button = UIButton()
+        button.setTitle("메인으로", for: .normal)
+        button.backgroundColor = UIColor(red: 255/255, green: 20/255, blue: 60/255, alpha: 1)
+        button.setTitleColor(UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1), for: .normal)
+        button.titleLabel?.font = UIFont(name: "Pretendard-SemiBold", size: 18)
+        button.addTarget(self, action: #selector(goToMain), for: .touchUpInside)
+        return button
+    }()
     
     private func setLayout() {
         [logoImageView,welcomeLabel,mainButton].forEach {
@@ -74,11 +74,13 @@ class WelcomeViewController: UIViewController {
         }
         
     }
+    
     @objc private func goToMain() {
-            self.navigationController?.popToRootViewController(animated: true)
-        }
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     private func updateWelcomeText() {
-            let username = id ?? "Guest"
-            welcomeLabel.text = "\(username)님 \n반가워요!"
-        }
+        let username = id ?? "Guest"
+        welcomeLabel.text = "\(username)님 \n반가워요!"
+    }
 }

@@ -234,7 +234,9 @@ final class LoginView: UIViewController, UITextFieldDelegate {
     
     private func updateLoginButtonState() {
         DispatchQueue.main.async {
-            let isEnabled = !(self.idTextField.text?.isEmpty ?? true) && !(self.passwordTextField.text?.isEmpty ?? true)
+            let isIdNotEmpty = !(self.idTextField.text?.isEmpty ?? true)
+            let isPasswordValid = (self.passwordTextField.text?.count ?? 0) >= 4
+            let isEnabled = isIdNotEmpty && isPasswordValid
             self.loginButton.isEnabled = isEnabled
             if isEnabled {
                 self.loginButton.backgroundColor = UIColor(red: 255/255, green: 20/255, blue: 60/255, alpha: 1)

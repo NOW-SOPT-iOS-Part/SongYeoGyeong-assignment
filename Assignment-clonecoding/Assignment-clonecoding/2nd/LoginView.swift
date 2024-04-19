@@ -248,10 +248,15 @@ final class LoginView: UIViewController, UITextFieldDelegate {
         }
     }
 
-
-
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.layer.borderWidth = 1
+        textField.layer.borderColor = UIColor(red: 0.612, green: 0.612, blue: 0.612, alpha: 1).cgColor
+        textField.layer.cornerRadius = 3
+    }
 
     func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.layer.borderWidth = 0
+        textField.layer.borderColor = UIColor.clear.cgColor
         updateLoginButtonState()
     }
 

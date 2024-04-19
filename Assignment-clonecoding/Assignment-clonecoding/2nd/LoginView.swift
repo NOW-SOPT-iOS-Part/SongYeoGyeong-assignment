@@ -125,20 +125,6 @@ final class LoginView: UIViewController, UITextFieldDelegate {
     }()
     
     
-    @objc func loginButtonDidTap(){
-        //        presentToWelcomeVC()
-        pushToWelcomeVC()
-    }
-    
-    
-    private func pushToWelcomeVC(){
-        let welcomeViewController = WelcomeViewController()
-        //        welcomeViewController.id = idTextField.text
-        //        welcomeViewController.setLabelText(id: idTextField.text)
-        self.navigationController?
-            .pushViewController(welcomeViewController, animated: true)
-    }
-    
     private let findID: UIButton = {
         let button = UIButton()
         button.setTitle("아이디 찾기", for: .normal)
@@ -198,6 +184,15 @@ final class LoginView: UIViewController, UITextFieldDelegate {
         self.view.backgroundColor = .black
         setLayout()
         updateLoginButtonState()
+    }
+    
+    @objc func loginButtonDidTap(){
+      guard let id = idTextField.text, !id.isEmpty else {
+          return
+      }
+      let welcomeViewController = WelcomeViewController()
+      welcomeViewController.id = id
+      self.present(welcomeViewController, animated: true)
     }
     
     private func setLayout() {

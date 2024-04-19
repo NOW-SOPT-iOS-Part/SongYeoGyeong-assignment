@@ -21,7 +21,7 @@ final class LoginView: UIViewController, UITextFieldDelegate {
         return label
     }()
     
-    private let idTextField: UITextField = {
+    private lazy var idTextField: UITextField = {
         let textField = UITextField()
         textField.textColor = UIColor(red: 156/255, green: 156/255, blue: 156/255, alpha: 1)
         textField.font = UIFont(name:"Pretendard-SemiBold", size: 15)
@@ -38,11 +38,24 @@ final class LoginView: UIViewController, UITextFieldDelegate {
         textField.leftView = paddingView
         textField.leftViewMode = .always
         
+        let clearButton = UIButton(type: .custom)
+            clearButton.setImage(UIImage(named: "X"), for: .normal)
+            clearButton.addTarget(self, action: #selector(clearText), for: .touchUpInside)
+            clearButton.frame = CGRect(x: 0, y: 0, width: 5, height: 5)
+            textField.rightView = clearButton
+            textField.rightViewMode = .whileEditing
+        
         return textField
     }()
 
+    @objc func clearText(sender: UIButton) {
+        if let textField = sender.superview as? UITextField {
+            textField.text = ""
+            updateLoginButtonState()
+        }
+    }
     
-    private let passwordTextField: UITextField = {
+    private lazy var passwordTextField: UITextField = {
         let textField = UITextField()
         textField.textColor = UIColor(red: 156/255, green: 156/255, blue: 156/255, alpha: 1)
         textField.font = UIFont(name: "Pretendard-SemiBold", size: 15)
@@ -52,15 +65,52 @@ final class LoginView: UIViewController, UITextFieldDelegate {
             .foregroundColor: UIColor.white.withAlphaComponent(0.2),
             .font: UIFont(name: "Pretendard-SemiBold", size: 15) ?? UIFont.systemFont(ofSize: 15)
         ]
-        
         textField.attributedPlaceholder = NSAttributedString(string: "비밀번호", attributes: placeholderAttributes)
         
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 22, height: 24))
         textField.leftView = paddingView
         textField.leftViewMode = .always
+
+        let rightViewContainer = UIView()
+        textField.rightView = rightViewContainer
+        textField.rightViewMode = .whileEditing
+
+        let eyeButton = UIButton(type: .custom)
+        eyeButton.setImage(UIImage(named: "EyesO"), for: .normal)
+        eyeButton.setImage(UIImage(named: "EyesX"), for: .selected)
+        eyeButton.addTarget(self, action: #selector(togglePasswordView), for: .touchUpInside)
+
+        let clearButton = UIButton(type: .custom)
+        clearButton.setImage(UIImage(named: "X"), for: .normal)
+        clearButton.addTarget(self, action: #selector(clearText), for: .touchUpInside)
+
+        rightViewContainer.addSubview(clearButton)
+        rightViewContainer.addSubview(eyeButton)
         
+        rightViewContainer.snp.makeConstraints { make in
+            make.height.equalTo(24)
+            make.width.equalTo(80)
+        }
+        
+        eyeButton.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.left.equalToSuperview()
+            make.width.height.equalTo(20)
+        }
+        
+        clearButton.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.left.equalTo(eyeButton.snp.right).offset(10)
+            make.width.height.equalTo(20)
+        }
+
         return textField
     }()
+
+    @objc func togglePasswordView(_ sender: UIButton) {
+        sender.isSelected.toggle()
+        passwordTextField.isSecureTextEntry.toggle()
+    }
     
     private lazy var loginButton: UIButton = {
         let button = UIButton()

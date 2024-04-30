@@ -26,6 +26,11 @@
 		5C2C30432BD2F3FD0000A765 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5C2C303A2BD2F3FD0000A765 /* Pretendard-SemiBold.otf */; };
 		5C2C30442BD2F3FD0000A765 /* Pretendard-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5C2C303B2BD2F3FD0000A765 /* Pretendard-Thin.otf */; };
 		5C2C30452BD2F3FD0000A765 /* Pretendard-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5C2C303C2BD2F3FD0000A765 /* Pretendard-Black.otf */; };
+		5C78FAFF2BE0B0F600E8499C /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C78FAFE2BE0B0F500E8499C /* HomeController.swift */; };
+		5C78FB092BE0B23C00E8499C /* TabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C78FB082BE0B23C00E8499C /* TabController.swift */; };
+		5C78FB0B2BE0B86A00E8499C /* ExpectedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C78FB0A2BE0B86A00E8499C /* ExpectedController.swift */; };
+		5C78FB0D2BE0B87B00E8499C /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C78FB0C2BE0B87B00E8499C /* SearchController.swift */; };
+		5C78FB0F2BE0B88B00E8499C /* LogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C78FB0E2BE0B88B00E8499C /* LogController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +53,11 @@
 		5C2C303A2BD2F3FD0000A765 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-SemiBold.otf"; path = "../../../../../../../Downloads/Pretendard-1.3.9/public/static/Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		5C2C303B2BD2F3FD0000A765 /* Pretendard-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-Thin.otf"; path = "../../../../../../../Downloads/Pretendard-1.3.9/public/static/Pretendard-Thin.otf"; sourceTree = "<group>"; };
 		5C2C303C2BD2F3FD0000A765 /* Pretendard-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-Black.otf"; path = "../../../../../../../Downloads/Pretendard-1.3.9/public/static/Pretendard-Black.otf"; sourceTree = "<group>"; };
+		5C78FAFE2BE0B0F500E8499C /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		5C78FB082BE0B23C00E8499C /* TabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabController.swift; sourceTree = "<group>"; };
+		5C78FB0A2BE0B86A00E8499C /* ExpectedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpectedController.swift; sourceTree = "<group>"; };
+		5C78FB0C2BE0B87B00E8499C /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
+		5C78FB0E2BE0B88B00E8499C /* LogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +92,7 @@
 		5C2C300A2BD2D28A0000A765 /* Assignment-clonecoding */ = {
 			isa = PBXGroup;
 			children = (
+				5C78FAF32BE0550500E8499C /* 3rd */,
 				5C2C30292BD2DF350000A765 /* Fonts */,
 				5C2C301F2BD2D3810000A765 /* 2nd */,
 				5C2C300B2BD2D28A0000A765 /* AppDelegate.swift */,
@@ -118,6 +129,18 @@
 				5C2C303B2BD2F3FD0000A765 /* Pretendard-Thin.otf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		5C78FAF32BE0550500E8499C /* 3rd */ = {
+			isa = PBXGroup;
+			children = (
+				5C78FAFE2BE0B0F500E8499C /* HomeController.swift */,
+				5C78FB082BE0B23C00E8499C /* TabController.swift */,
+				5C78FB0A2BE0B86A00E8499C /* ExpectedController.swift */,
+				5C78FB0C2BE0B87B00E8499C /* SearchController.swift */,
+				5C78FB0E2BE0B88B00E8499C /* LogController.swift */,
+			);
+			path = 3rd;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,9 +231,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C2C30102BD2D28A0000A765 /* ViewController.swift in Sources */,
+				5C78FB0B2BE0B86A00E8499C /* ExpectedController.swift in Sources */,
+				5C78FB0F2BE0B88B00E8499C /* LogController.swift in Sources */,
+				5C78FB092BE0B23C00E8499C /* TabController.swift in Sources */,
 				5C2C30282BD2D4FB0000A765 /* WelcomeViewController.swift in Sources */,
+				5C78FAFF2BE0B0F600E8499C /* HomeController.swift in Sources */,
 				5C2C300C2BD2D28A0000A765 /* AppDelegate.swift in Sources */,
 				5C2C30212BD2D3930000A765 /* LoginView.swift in Sources */,
+				5C78FB0D2BE0B87B00E8499C /* SearchController.swift in Sources */,
 				5C2C300E2BD2D28A0000A765 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

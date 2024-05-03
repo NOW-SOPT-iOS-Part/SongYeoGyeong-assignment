@@ -31,6 +31,8 @@
 		5C78FB0B2BE0B86A00E8499C /* ExpectedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C78FB0A2BE0B86A00E8499C /* ExpectedController.swift */; };
 		5C78FB0D2BE0B87B00E8499C /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C78FB0C2BE0B87B00E8499C /* SearchController.swift */; };
 		5C78FB0F2BE0B88B00E8499C /* LogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C78FB0E2BE0B88B00E8499C /* LogController.swift */; };
+		5C78FB132BE0DD2100E8499C /* TivingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C78FB122BE0DD2100E8499C /* TivingModel.swift */; };
+		5C78FB172BE1148700E8499C /* HomeCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C78FB162BE1148700E8499C /* HomeCollectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +60,8 @@
 		5C78FB0A2BE0B86A00E8499C /* ExpectedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpectedController.swift; sourceTree = "<group>"; };
 		5C78FB0C2BE0B87B00E8499C /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		5C78FB0E2BE0B88B00E8499C /* LogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogController.swift; sourceTree = "<group>"; };
+		5C78FB122BE0DD2100E8499C /* TivingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TivingModel.swift; sourceTree = "<group>"; };
+		5C78FB162BE1148700E8499C /* HomeCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +143,8 @@
 				5C78FB0A2BE0B86A00E8499C /* ExpectedController.swift */,
 				5C78FB0C2BE0B87B00E8499C /* SearchController.swift */,
 				5C78FB0E2BE0B88B00E8499C /* LogController.swift */,
+				5C78FB122BE0DD2100E8499C /* TivingModel.swift */,
+				5C78FB162BE1148700E8499C /* HomeCollectionView.swift */,
 			);
 			path = 3rd;
 			sourceTree = "<group>";
@@ -232,6 +238,7 @@
 			files = (
 				5C2C30102BD2D28A0000A765 /* ViewController.swift in Sources */,
 				5C78FB0B2BE0B86A00E8499C /* ExpectedController.swift in Sources */,
+				5C78FB132BE0DD2100E8499C /* TivingModel.swift in Sources */,
 				5C78FB0F2BE0B88B00E8499C /* LogController.swift in Sources */,
 				5C78FB092BE0B23C00E8499C /* TabController.swift in Sources */,
 				5C2C30282BD2D4FB0000A765 /* WelcomeViewController.swift in Sources */,
@@ -240,6 +247,7 @@
 				5C2C30212BD2D3930000A765 /* LoginView.swift in Sources */,
 				5C78FB0D2BE0B87B00E8499C /* SearchController.swift in Sources */,
 				5C2C300E2BD2D28A0000A765 /* SceneDelegate.swift in Sources */,
+				5C78FB172BE1148700E8499C /* HomeCollectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

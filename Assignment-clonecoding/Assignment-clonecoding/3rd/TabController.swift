@@ -13,8 +13,14 @@ class TabController: UITabBarController {
         super.viewDidLoad()
         self.setupTaps() 
         self.selectedIndex = 0
-
+        tabBar.isTranslucent = true
+        tabBar.backgroundColor = .clear
+        tabBar.barTintColor = .clear
+        tabBar.shadowImage = UIImage()
+        tabBar.backgroundImage = UIImage()
+        //자꾸 탭바가 색이 혼자만 회색이 되어서 설정해 준 값들이다!
     }
+    
     private func setupTaps(){
         let home = self.createNav(with: "홈", and: UIImage(systemName: "house"), vc: HomeController())
         let expect = self.createNav(with: "공개예정", and: UIImage(systemName: "video"), vc: ExpectedController())
@@ -22,6 +28,7 @@ class TabController: UITabBarController {
         let log = self.createNav(with: "기록", and: UIImage(systemName: "clock"), vc: LogController())
         self.setViewControllers([home, expect, search, log], animated: true)
     }
+    
     private func createNav(with title: String, and image:UIImage?, vc: UIViewController) -> UINavigationController{
         let nav = UINavigationController(rootViewController: vc)
         

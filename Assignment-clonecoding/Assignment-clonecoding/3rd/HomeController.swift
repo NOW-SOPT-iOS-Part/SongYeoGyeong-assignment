@@ -13,12 +13,14 @@ final class HomeController: UIViewController {
     
     private lazy var pagingTabBar = PagingTabBar(categoryTitleList: categoryTitleList)
     
-    // private lazy var pagingView = PagingView(categoryTitleList: categoryTitleList, pagingTabBar: pagingTabBar)
-    //페이지를 넘겨주기 위해 설정해줌.
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupLayout()
-    }
+    private let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.backgroundColor = .black
+        scrollView.contentInsetAdjustmentBehavior = .never
+        return scrollView
+    }()
+    
+    private let contentView = UIView()
     
     private let tivingImageView: UIImageView = {
         let imageView = UIImageView()
@@ -38,27 +40,47 @@ final class HomeController: UIViewController {
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .black
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        
+        setupLayout()
+    }
 }
 
 private extension HomeController {
     func setupLayout() {
         navigationController?.isNavigationBarHidden = true
+        [pagingTabBar].forEach { view.addSubview($0) }
+        [movieImageView, tivingImageView, profileImageView].forEach { contentView.addSubview($0) }
         
-        [movieImageView, pagingTabBar, tivingImageView, profileImageView].forEach { view.addSubview($0) }
         
-        movieImageView.snp.makeConstraints{
+        scrollView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+
+        contentView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+            make.width.equalToSuperview()
+            make.height.greaterThanOrEqualTo(scrollView)
+        }
+
+        movieImageView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
             $0.height.equalTo(520)
         }
         
-        tivingImageView.snp.makeConstraints{
+        tivingImageView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(58)
             $0.left.equalToSuperview().offset(11)
             $0.width.equalTo(99)
             $0.height.equalTo(25)
         }
         
-        profileImageView.snp.makeConstraints{
+        profileImageView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(55)
             $0.right.equalToSuperview().offset(-9)
             $0.width.equalTo(33)
@@ -70,11 +92,5 @@ private extension HomeController {
             $0.leading.trailing.equalToSuperview().inset(7)
             $0.height.equalTo(pagingTabBar.cellHeight)
         }
-        
-//        pagingView.snp.makeConstraints {
-//            $0.top.equalTo(pagingTabBar.snp.bottom)
-//            $0.leading.trailing.equalToSuperview()
-//            $0.height.equalTo(200)
-//        }
     }
 }

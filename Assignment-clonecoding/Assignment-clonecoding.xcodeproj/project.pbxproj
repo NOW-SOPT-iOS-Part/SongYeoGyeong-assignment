@@ -33,6 +33,10 @@
 		5C78FB0F2BE0B88B00E8499C /* LogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C78FB0E2BE0B88B00E8499C /* LogController.swift */; };
 		5C78FB132BE0DD2100E8499C /* TivingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C78FB122BE0DD2100E8499C /* TivingModel.swift */; };
 		5C78FB172BE1148700E8499C /* HomeCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C78FB162BE1148700E8499C /* HomeCollectionView.swift */; };
+		5C78FB262BE655E800E8499C /* PagingTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C78FB252BE655E800E8499C /* PagingTabBar.swift */; };
+		5C78FB282BE6587E00E8499C /* PagingTabBarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C78FB272BE6587E00E8499C /* PagingTabBarCell.swift */; };
+		5C78FB2A2BE65A7A00E8499C /* PagingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C78FB292BE65A7A00E8499C /* PagingView.swift */; };
+		5C78FB2C2BE65BF200E8499C /* PagingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C78FB2B2BE65BF200E8499C /* PagingCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +66,10 @@
 		5C78FB0E2BE0B88B00E8499C /* LogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogController.swift; sourceTree = "<group>"; };
 		5C78FB122BE0DD2100E8499C /* TivingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TivingModel.swift; sourceTree = "<group>"; };
 		5C78FB162BE1148700E8499C /* HomeCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionView.swift; sourceTree = "<group>"; };
+		5C78FB252BE655E800E8499C /* PagingTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingTabBar.swift; sourceTree = "<group>"; };
+		5C78FB272BE6587E00E8499C /* PagingTabBarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingTabBarCell.swift; sourceTree = "<group>"; };
+		5C78FB292BE65A7A00E8499C /* PagingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingView.swift; sourceTree = "<group>"; };
+		5C78FB2B2BE65BF200E8499C /* PagingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +153,10 @@
 				5C78FB0E2BE0B88B00E8499C /* LogController.swift */,
 				5C78FB122BE0DD2100E8499C /* TivingModel.swift */,
 				5C78FB162BE1148700E8499C /* HomeCollectionView.swift */,
+				5C78FB252BE655E800E8499C /* PagingTabBar.swift */,
+				5C78FB272BE6587E00E8499C /* PagingTabBarCell.swift */,
+				5C78FB292BE65A7A00E8499C /* PagingView.swift */,
+				5C78FB2B2BE65BF200E8499C /* PagingCollectionViewCell.swift */,
 			);
 			path = 3rd;
 			sourceTree = "<group>";
@@ -239,11 +251,15 @@
 				5C2C30102BD2D28A0000A765 /* ViewController.swift in Sources */,
 				5C78FB0B2BE0B86A00E8499C /* ExpectedController.swift in Sources */,
 				5C78FB132BE0DD2100E8499C /* TivingModel.swift in Sources */,
+				5C78FB2A2BE65A7A00E8499C /* PagingView.swift in Sources */,
 				5C78FB0F2BE0B88B00E8499C /* LogController.swift in Sources */,
 				5C78FB092BE0B23C00E8499C /* TabController.swift in Sources */,
+				5C78FB2C2BE65BF200E8499C /* PagingCollectionViewCell.swift in Sources */,
+				5C78FB282BE6587E00E8499C /* PagingTabBarCell.swift in Sources */,
 				5C2C30282BD2D4FB0000A765 /* WelcomeViewController.swift in Sources */,
 				5C78FAFF2BE0B0F600E8499C /* HomeController.swift in Sources */,
 				5C2C300C2BD2D28A0000A765 /* AppDelegate.swift in Sources */,
+				5C78FB262BE655E800E8499C /* PagingTabBar.swift in Sources */,
 				5C2C30212BD2D3930000A765 /* LoginView.swift in Sources */,
 				5C78FB0D2BE0B87B00E8499C /* SearchController.swift in Sources */,
 				5C2C300E2BD2D28A0000A765 /* SceneDelegate.swift in Sources */,

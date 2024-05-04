@@ -6,88 +6,75 @@
 //
 
 import UIKit
+import SnapKit
 
 final class HomeController: UIViewController {
-    final let movieLineSpacing: CGFloat = 6
-    final let cellHeight: CGFloat = 173
-    final let movieInset = UIEdgeInsets(top: 48, left: 30, bottom: 42, right: 6)
+    private let categoryTitleList = ["홈", "실시간", "TV프로그램","영화","파라마운트+"]
     
-    private let collectionView : UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        return collectionView
-    }()
+    private lazy var pagingTabBar = PagingTabBar(categoryTitleList: categoryTitleList)
     
-    private let titleMovie: UIImageView = {
+    // private lazy var pagingView = PagingView(categoryTitleList: categoryTitleList, pagingTabBar: pagingTabBar)
+    //페이지를 넘겨주기 위해 설정해줌.
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupLayout()
+    }
+    
+    private let tivingImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "poster1")
+        imageView.image = UIImage(named: "tivingupside")
         return imageView
     }()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.view.backgroundColor = .black
+    private let profileImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "profile1")
+        return imageView
+    }()
+    
+    private let movieImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "poster1")
+        imageView.contentMode = .scaleAspectFill
+        return imageView
+    }()
+}
+
+private extension HomeController {
+    func setupLayout() {
+        navigationController?.isNavigationBarHidden = true
         
-        setLayout()
-        register()
-        setDelegate()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        collectionView.frame = view.bounds
-    }
-    
-    private func setLayout(){
-        self.view.addSubview(collectionView)
-    }
-    
-    private func register() {
-        collectionView.register(
-            HomeCollectionView.self,
-            forCellWithReuseIdentifier: HomeCollectionView.identifier
-        )
-    }
-    
-    private func setDelegate() {
-        collectionView.delegate = self
-        collectionView.dataSource = self
-    }
-}
-
-// UICollectionViewDelegateFlowLayout, UICollectionViewDataSource 프로토콜 익스텐션 추가
-extension HomeController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let numberOfColumns: CGFloat = 4
-        let totalSpacing: CGFloat = movieInset.left + movieInset.right + movieLineSpacing * (numberOfColumns - 1)
-        let adjustedWidth = (collectionView.bounds.width - totalSpacing) / numberOfColumns
-        return CGSize(width: adjustedWidth, height: cellHeight)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return movieLineSpacing
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return movieLineSpacing
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return movieInset
-    }
-}
-
-extension HomeController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return ItemModel.dummy().count
-    }
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCollectionView.identifier, for: indexPath) as? HomeCollectionView else {
-            fatalError("Unable to dequeue HomeCollectionView")
+        [movieImageView, pagingTabBar, tivingImageView, profileImageView].forEach { view.addSubview($0) }
+        
+        movieImageView.snp.makeConstraints{
+            $0.top.leading.trailing.equalToSuperview()
+            $0.height.equalTo(520)
         }
-        let item = ItemModel.dummy()[indexPath.row]
-        cell.configure(with: item)
-        return cell
+        
+        tivingImageView.snp.makeConstraints{
+            $0.top.equalToSuperview().offset(58)
+            $0.left.equalToSuperview().offset(11)
+            $0.width.equalTo(99)
+            $0.height.equalTo(25)
+        }
+        
+        profileImageView.snp.makeConstraints{
+            $0.top.equalToSuperview().offset(55)
+            $0.right.equalToSuperview().offset(-9)
+            $0.width.equalTo(33)
+            $0.height.equalTo(31)
+        }
+        
+        pagingTabBar.snp.makeConstraints {
+            $0.top.equalTo(tivingImageView.snp.bottom).offset(15)
+            $0.leading.trailing.equalToSuperview().inset(7)
+            $0.height.equalTo(pagingTabBar.cellHeight)
+        }
+        
+//        pagingView.snp.makeConstraints {
+//            $0.top.equalTo(pagingTabBar.snp.bottom)
+//            $0.leading.trailing.equalToSuperview()
+//            $0.height.equalTo(200)
+//        }
     }
 }

@@ -41,6 +41,23 @@ final class HomeController: UIViewController {
         return imageView
     }()
     
+    private lazy var fulldisplayButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("전체보기 >", for: .normal)
+        button.setTitleColor(.systemGray3, for: .normal)
+        button.titleLabel?.font = UIFont(name: "Pretendard-Mediud", size: 17)
+        return button
+    }()
+    
+    private let contentLabel: UILabel = {
+        let label = UILabel()
+        label.text = "티빙에서 꼭 봐야 하는 콘텐츠"
+        label.font = UIFont(name: "Pretendard-SemiBol", size: 15)
+        label.textAlignment = .center
+        label.textColor = .white
+        return label
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
@@ -55,9 +72,8 @@ private extension HomeController {
     func setupLayout() {
         navigationController?.isNavigationBarHidden = true
         [pagingTabBar].forEach { view.addSubview($0) }
-        [movieImageView, tivingImageView, profileImageView].forEach { contentView.addSubview($0) }
-        
-        
+        [movieImageView, tivingImageView, profileImageView, contentLabel, fulldisplayButton].forEach { contentView.addSubview($0) }
+
         scrollView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
@@ -92,5 +108,16 @@ private extension HomeController {
             $0.leading.trailing.equalToSuperview().inset(7)
             $0.height.equalTo(pagingTabBar.cellHeight)
         }
+
+        contentLabel.snp.makeConstraints {
+            $0.top.equalTo(movieImageView.snp.bottom).offset(15)
+            $0.leading.equalToSuperview().inset(15)
+        }
+
+        fulldisplayButton.snp.makeConstraints {
+            $0.top.equalTo(movieImageView.snp.bottom).offset(15) 
+            $0.trailing.equalToSuperview().offset(-12)
+        }
     }
 }
+

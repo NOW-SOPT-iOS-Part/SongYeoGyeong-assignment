@@ -43,7 +43,9 @@ class MovieCollectionViewCell: UICollectionViewCell {
         [movieImageView, movieLabel].forEach {
                     contentView.addSubview($0)
                 }
-        
+        movieLabel.snp.makeConstraints{
+            $0.top.equalTo(movieImageView.snp.bottom).offset(3)
+        }
         movieImageView.snp.makeConstraints{
             $0.top.leading.trailing.equalToSuperview()
             $0.height.equalTo(150)

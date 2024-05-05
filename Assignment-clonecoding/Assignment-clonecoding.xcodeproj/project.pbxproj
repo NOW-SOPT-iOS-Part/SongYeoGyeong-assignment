@@ -37,6 +37,7 @@
 		5C78FB282BE6587E00E8499C /* PagingTabBarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C78FB272BE6587E00E8499C /* PagingTabBarCell.swift */; };
 		5C78FB2A2BE65A7A00E8499C /* PagingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C78FB292BE65A7A00E8499C /* PagingView.swift */; };
 		5C78FB2C2BE65BF200E8499C /* PagingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C78FB2B2BE65BF200E8499C /* PagingCollectionViewCell.swift */; };
+		5C78FB4A2BE8032300E8499C /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C78FB492BE8032300E8499C /* MovieCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		5C78FB272BE6587E00E8499C /* PagingTabBarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingTabBarCell.swift; sourceTree = "<group>"; };
 		5C78FB292BE65A7A00E8499C /* PagingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingView.swift; sourceTree = "<group>"; };
 		5C78FB2B2BE65BF200E8499C /* PagingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingCollectionViewCell.swift; sourceTree = "<group>"; };
+		5C78FB492BE8032300E8499C /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				5C78FAFE2BE0B0F500E8499C /* HomeController.swift */,
+				5C78FB492BE8032300E8499C /* MovieCollectionViewCell.swift */,
 				5C78FB082BE0B23C00E8499C /* TabController.swift */,
 				5C78FB0A2BE0B86A00E8499C /* ExpectedController.swift */,
 				5C78FB0C2BE0B87B00E8499C /* SearchController.swift */,
@@ -248,6 +251,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C78FB4A2BE8032300E8499C /* MovieCollectionViewCell.swift in Sources */,
 				5C2C30102BD2D28A0000A765 /* ViewController.swift in Sources */,
 				5C78FB0B2BE0B86A00E8499C /* ExpectedController.swift in Sources */,
 				5C78FB132BE0DD2100E8499C /* TivingModel.swift in Sources */,

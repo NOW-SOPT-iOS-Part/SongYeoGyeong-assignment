@@ -8,22 +8,18 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-    
     var window: UIWindow?
-    
-    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        
-        // 1.
-        guard let windowScene = (scene as? UIWindowScene) else { return }
-    // 2.
-        self.window = UIWindow(windowScene: windowScene)
-    // 3.
-        let navigationController = UINavigationController(rootViewController: LoginView())
-        self.window?.rootViewController = navigationController
-    // 4.
-        self.window?.makeKeyAndVisible()
-    }
 
+    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        guard let windowScene = scene as? UIWindowScene else { return }
+        
+        // 윈도우 초기화 및 TabController 설정
+        window = UIWindow(windowScene: windowScene)
+        let tabController = TabController()
+        window?.rootViewController = tabController
+        window?.makeKeyAndVisible()
+    }
+}
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
@@ -53,6 +49,4 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 
-
-}
 

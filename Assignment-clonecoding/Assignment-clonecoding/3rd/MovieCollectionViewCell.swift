@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import SnapKit
 
 protocol MovieCollectionDelegate: AnyObject {
-    func didTapMovieCell(_ cell: MovieCollectionViewCell)
+    func didTapMovieCell(_ index: Int)
 }
 
 class MovieCollectionViewCell: UICollectionViewCell {
@@ -58,4 +59,11 @@ extension MovieCollectionViewCell {
         movieLabel.text = itemData.name
     }
     
+}
+extension MovieCollectionViewCell: UICollectionViewDelegate{
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let delegate = delegate{
+            delegate.didTapMovieCell(indexPath.item)
+        }
+    }
 }

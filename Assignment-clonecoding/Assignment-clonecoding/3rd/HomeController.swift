@@ -168,7 +168,16 @@ extension HomeController: UICollectionViewDataSource {
         // 셀에 데이터 바인딩
         let item = itemData[indexPath.item]
         cell.dataBind(item)
+        
+        cell.delegate = self
 
         return cell
+    }
+}
+
+extension HomeController: MovieCollectionDelegate{
+    func didTapMovieCell(_ index: Int){
+        let vc = MovieInfoViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }

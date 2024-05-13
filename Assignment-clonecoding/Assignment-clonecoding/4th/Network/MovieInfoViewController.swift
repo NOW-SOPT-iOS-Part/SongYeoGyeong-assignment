@@ -19,6 +19,7 @@ class MovieInfoView: UIView {
     private let prdtYear = UILabel()
     private let showTm = UILabel()
     private let directors = UILabel()
+    lazy var movieSelect = 
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -38,6 +39,7 @@ class MovieInfoView: UIView {
         }
         
         addSubview(contentView)
+        contentView.backgroundColor = .red
     }
     
     private func setupLayout() {
@@ -47,27 +49,27 @@ class MovieInfoView: UIView {
         
         movieCd.snp.makeConstraints {
             $0.top.equalToSuperview().offset(20)
-            $0.left.right.equalToSuperview().inset(20)
+            $0.leading.trailing.equalToSuperview().inset(20)
         }
         
         movieNm.snp.makeConstraints {
             $0.top.equalTo(movieCd.snp.bottom).offset(10)
-            $0.left.right.equalToSuperview().inset(20)
+            $0.leading.trailing.equalToSuperview().inset(20)
         }
         
         prdtYear.snp.makeConstraints {
             $0.top.equalTo(movieNm.snp.bottom).offset(10)
-            $0.left.right.equalToSuperview().inset(20)
+            $0.leading.trailing.equalToSuperview().inset(20)
         }
         
         showTm.snp.makeConstraints {
             $0.top.equalTo(prdtYear.snp.bottom).offset(10)
-            $0.left.right.equalToSuperview().inset(20)
+            $0.leading.trailing.equalToSuperview().inset(20)
         }
         
         directors.snp.makeConstraints {
             $0.top.equalTo(showTm.snp.bottom).offset(10)
-            $0.left.right.equalToSuperview().inset(20)
+            $0.leading.trailing.equalToSuperview().inset(20)
             $0.bottom.lessThanOrEqualToSuperview().offset(-20)
         }
     }
@@ -79,37 +81,41 @@ class MovieInfoView: UIView {
         directors.text = "Directors: \(movieInfo.directors)"
     }
     
-    final class MovieInfoViewController: UIViewController {
-        
-        var movieId: Int?  // 영화 ID를 저장할 변수
-        private let movieInfoView = MovieInfoView()
-        private let movieProvider = MoyaProvider<MovieTargetType>(plugins: [MoyaLoggingPlugin()])
-        
-        override func viewDidLoad() {
-            super.viewDidLoad()
-            view = movieInfoView
-            fetchMovieInfo()
+    
+}
+final class MovieInfoViewController: UIViewController {
+    
+    var movieId: Int?  // 영화 ID를 저장할 변수
+    private let movieInfoView = MovieInfoView()
+    private let movieProvider = MoyaProvider<MovieTargetType>(plugins: [MoyaLoggingPlugin()])
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.addSubview(movieInfoView)
+        movieInfoView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
+        fetchMovieInfo()
+    }
+    
+    private func fetchMovieInfo() {
+        guard let movieId = movieId, let apiKey = Bundle.main.apiKey else { return }
         
-        private func fetchMovieInfo() {
-            guard let movieId = movieId, let apiKey = Bundle.main.apiKey else { return }
-            
-            let requestModel = ModelInfoRequestModel(key: apiKey, movieCd: String("20124079"))
+        let requestModel = ModelInfoRequestModel(key: apiKey, movieCd: String("20124079"))
 
-            
-            movieProvider.request(.fetchMovieInfo(requestModel: requestModel)) { [weak self] result in
-                DispatchQueue.main.async {
-                    switch result {
-                    case .success(let response):
-                        do {
-                            let movieInfo = try JSONDecoder().decode(MovieInfoResponseModel.self, from: response.data)
-                            self?.movieInfoView.configure(with: movieInfo)
-                        } catch {
-                            print("Error decoding: \(error)")
-                        }
-                    case .failure(let error):
-                        print("Error fetching movie info: \(error)")
+        
+        movieProvider.request(.fetchMovieInfo(requestModel: requestModel)) { [weak self] result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let response):
+                    do {
+                        let movieInfo = try JSONDecoder().decode(MovieInfoResponseModel.self, from: response.data)
+                        self?.movieInfoView.configure(with: movieInfo)
+                    } catch {
+                        print("Error decoding: \(error)")
                     }
+                case .failure(let error):
+                    print("Error fetching movie info: \(error)")
                 }
             }
         }

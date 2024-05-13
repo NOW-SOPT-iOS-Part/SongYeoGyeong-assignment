@@ -68,6 +68,6 @@ final class MoyaLoggingPlugin: PluginType {
         log.append("<-- END HTTP")
         print(log)
     }
+    
 }
-
-
+    

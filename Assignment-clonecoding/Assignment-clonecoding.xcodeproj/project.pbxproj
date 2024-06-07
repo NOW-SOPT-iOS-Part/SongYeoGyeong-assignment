@@ -13,7 +13,7 @@
 		5C2C30132BD2D28A0000A765 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 5C2C30122BD2D28A0000A765 /* Base */; };
 		5C2C30152BD2D28B0000A765 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C2C30142BD2D28B0000A765 /* Assets.xcassets */; };
 		5C2C30182BD2D28B0000A765 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 5C2C30172BD2D28B0000A765 /* Base */; };
-		5C2C30212BD2D3930000A765 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2C30202BD2D3930000A765 /* LoginView.swift */; };
+		5C2C30212BD2D3930000A765 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2C30202BD2D3930000A765 /* LoginViewController.swift */; };
 		5C2C30242BD2D41C0000A765 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 5C2C30232BD2D41C0000A765 /* SnapKit */; };
 		5C2C30262BD2D41C0000A765 /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 5C2C30252BD2D41C0000A765 /* SnapKit-Dynamic */; };
 		5C2C30282BD2D4FB0000A765 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2C30272BD2D4FB0000A765 /* WelcomeViewController.swift */; };
@@ -37,6 +37,11 @@
 		5C78FB2A2BE65A7A00E8499C /* PagingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C78FB292BE65A7A00E8499C /* PagingView.swift */; };
 		5C78FB2C2BE65BF200E8499C /* PagingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C78FB2B2BE65BF200E8499C /* PagingCollectionViewCell.swift */; };
 		5C78FB4A2BE8032300E8499C /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C78FB492BE8032300E8499C /* MovieCollectionViewCell.swift */; };
+		5CA73EAE2C12FF9300AB8372 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA73EAD2C12FF9300AB8372 /* Extension.swift */; };
+		5CA73EB12C13290800AB8372 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 5CA73EB02C13290800AB8372 /* RxCocoa */; };
+		5CA73EB32C132E1700AB8372 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA73EB22C132E1700AB8372 /* ViewModel.swift */; };
+		5CA73EB52C13310600AB8372 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA73EB42C13310600AB8372 /* User.swift */; };
+		5CA73EB72C13449300AB8372 /* WelcomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA73EB62C13449300AB8372 /* WelcomeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,7 +53,7 @@
 		5C2C30142BD2D28B0000A765 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5C2C30172BD2D28B0000A765 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5C2C30192BD2D28B0000A765 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5C2C30202BD2D3930000A765 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		5C2C30202BD2D3930000A765 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5C2C30272BD2D4FB0000A765 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		5C2C30342BD2F3FD0000A765 /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-Light.otf"; path = "../../../../../../../Downloads/Pretendard-1.3.9/public/static/Pretendard-Light.otf"; sourceTree = "<group>"; };
 		5C2C30352BD2F3FD0000A765 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-Medium.otf"; path = "../../../../../../../Downloads/Pretendard-1.3.9/public/static/Pretendard-Medium.otf"; sourceTree = "<group>"; };
@@ -70,6 +75,10 @@
 		5C78FB292BE65A7A00E8499C /* PagingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingView.swift; sourceTree = "<group>"; };
 		5C78FB2B2BE65BF200E8499C /* PagingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingCollectionViewCell.swift; sourceTree = "<group>"; };
 		5C78FB492BE8032300E8499C /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
+		5CA73EAD2C12FF9300AB8372 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		5CA73EB22C132E1700AB8372 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		5CA73EB42C13310600AB8372 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		5CA73EB62C13449300AB8372 /* WelcomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CA73EB12C13290800AB8372 /* RxCocoa in Frameworks */,
 				5C2C30242BD2D41C0000A765 /* SnapKit in Frameworks */,
 				5C2C30262BD2D41C0000A765 /* SnapKit-Dynamic in Frameworks */,
 			);
@@ -121,8 +131,12 @@
 		5C2C301F2BD2D3810000A765 /* 2nd */ = {
 			isa = PBXGroup;
 			children = (
-				5C2C30202BD2D3930000A765 /* LoginView.swift */,
+				5C2C30202BD2D3930000A765 /* LoginViewController.swift */,
 				5C2C30272BD2D4FB0000A765 /* WelcomeViewController.swift */,
+				5CA73EAD2C12FF9300AB8372 /* Extension.swift */,
+				5CA73EB22C132E1700AB8372 /* ViewModel.swift */,
+				5CA73EB42C13310600AB8372 /* User.swift */,
+				5CA73EB62C13449300AB8372 /* WelcomeViewModel.swift */,
 			);
 			path = 2nd;
 			sourceTree = "<group>";
@@ -180,6 +194,7 @@
 			packageProductDependencies = (
 				5C2C30232BD2D41C0000A765 /* SnapKit */,
 				5C2C30252BD2D41C0000A765 /* SnapKit-Dynamic */,
+				5CA73EB02C13290800AB8372 /* RxCocoa */,
 			);
 			productName = "Assignment-clonecoding";
 			productReference = 5C2C30082BD2D28A0000A765 /* Assignment-clonecoding.app */;
@@ -211,6 +226,7 @@
 			mainGroup = 5C2C2FFF2BD2D28A0000A765;
 			packageReferences = (
 				5C2C30222BD2D41C0000A765 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				5CA73EAF2C13290800AB8372 /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = 5C2C30092BD2D28A0000A765 /* Products */;
 			projectDirPath = "";
@@ -249,6 +265,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C78FB4A2BE8032300E8499C /* MovieCollectionViewCell.swift in Sources */,
+				5CA73EB72C13449300AB8372 /* WelcomeViewModel.swift in Sources */,
 				5C2C30102BD2D28A0000A765 /* ViewController.swift in Sources */,
 				5C78FB0B2BE0B86A00E8499C /* ExpectedController.swift in Sources */,
 				5C78FB132BE0DD2100E8499C /* TivingModel.swift in Sources */,
@@ -258,12 +275,15 @@
 				5C78FB2C2BE65BF200E8499C /* PagingCollectionViewCell.swift in Sources */,
 				5C78FB282BE6587E00E8499C /* PagingTabBarCell.swift in Sources */,
 				5C2C30282BD2D4FB0000A765 /* WelcomeViewController.swift in Sources */,
+				5CA73EB32C132E1700AB8372 /* ViewModel.swift in Sources */,
+				5CA73EAE2C12FF9300AB8372 /* Extension.swift in Sources */,
 				5C78FAFF2BE0B0F600E8499C /* HomeController.swift in Sources */,
 				5C2C300C2BD2D28A0000A765 /* AppDelegate.swift in Sources */,
 				5C78FB262BE655E800E8499C /* PagingTabBar.swift in Sources */,
-				5C2C30212BD2D3930000A765 /* LoginView.swift in Sources */,
+				5C2C30212BD2D3930000A765 /* LoginViewController.swift in Sources */,
 				5C78FB0D2BE0B87B00E8499C /* SearchController.swift in Sources */,
 				5C2C300E2BD2D28A0000A765 /* SceneDelegate.swift in Sources */,
+				5CA73EB52C13310600AB8372 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,6 +516,14 @@
 				minimumVersion = 5.7.1;
 			};
 		};
+		5CA73EAF2C13290800AB8372 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.7.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -508,6 +536,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5C2C30222BD2D41C0000A765 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = "SnapKit-Dynamic";
+		};
+		5CA73EB02C13290800AB8372 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5CA73EAF2C13290800AB8372 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

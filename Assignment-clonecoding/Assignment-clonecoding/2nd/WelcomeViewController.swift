@@ -9,10 +9,6 @@ import UIKit
 import RxSwift
 import SnapKit
 
-import UIKit
-import RxSwift
-import SnapKit
-
 class WelcomeViewController: UIViewController {
     var viewModel: WelcomeViewModel!
     private let disposeBag = DisposeBag()
@@ -59,7 +55,7 @@ class WelcomeViewController: UIViewController {
         self.view.backgroundColor = .black
         setUpLayout()
         setUpConstraint()
-        bindViewModel()
+        setupBindings()
     }
     
     // MARK: - setUpLayout
@@ -90,6 +86,11 @@ class WelcomeViewController: UIViewController {
             make.top.equalToSuperview().offset(694)
             make.height.equalTo(52)
         }
+    }
+    
+    // MARK: - setupBindings
+    private func setupBindings() {
+        bindViewModel()
     }
     
     private func bindViewModel() {

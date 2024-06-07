@@ -110,13 +110,13 @@ final class LoginViewController: UIViewController {
         
         eyeButton.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.left.equalToSuperview()
+            make.leading.equalToSuperview()
             make.width.height.equalTo(20)
         }
         
         clearButton.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.left.equalTo(eyeButton.snp.right).offset(10)
+            make.leading.equalTo(eyeButton.snp.trailing).offset(10)
             make.width.height.equalTo(20)
         }
 
@@ -252,62 +252,62 @@ final class LoginViewController: UIViewController {
         titleLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalToSuperview().offset(90)
-            make.left.equalToSuperview().inset(109)
-            make.right.equalToSuperview().inset(110)
+            make.leading.equalToSuperview().inset(109)
+            make.trailing.equalToSuperview().inset(110)
             make.width.equalTo(156)
             make.height.equalTo(37)
         }
         
         idTextField.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(31)
-            make.left.right.equalToSuperview().inset(20)
+            make.leading.trailing.equalToSuperview().inset(20)
             make.height.equalTo(52)
         }
         
         passwordTextField.snp.makeConstraints { make in
             make.top.equalTo(idTextField.snp.bottom).offset(7)
-            make.left.right.equalTo(idTextField)
+            make.leading.trailing.equalTo(idTextField)
             make.height.equalTo(52)
         }
         
         loginButton.snp.makeConstraints { make in
             make.top.equalTo(passwordTextField.snp.bottom).offset(21)
-            make.left.right.equalTo(idTextField)
+            make.leading.trailing.equalTo(idTextField)
             make.height.equalTo(52)
         }
         
         findID.snp.makeConstraints { make in
             make.top.equalTo(loginButton.snp.bottom).offset(31)
-            make.left.equalToSuperview().inset(85)
-            make.right.equalToSuperview().inset(228)
+            make.leading.equalToSuperview().inset(85)
+            make.trailing.equalToSuperview().inset(228)
             make.height.equalTo(22)
         }
         
         findPW.snp.makeConstraints { make in
             make.top.equalTo(loginButton.snp.bottom).offset(31)
-            make.left.equalToSuperview().inset(216)
-            make.right.equalToSuperview().inset(86)
+            make.leading.equalToSuperview().inset(216)
+            make.trailing.equalToSuperview().inset(86)
             make.height.equalTo(22)
         }
         
         noAccount.snp.makeConstraints { make in
             make.top.equalTo(findID.snp.bottom).offset(28)
-            make.left.equalToSuperview().inset(51)
-            make.right.equalToSuperview().inset(195)
+            make.leading.equalToSuperview().inset(51)
+            make.trailing.equalToSuperview().inset(195)
             make.height.equalTo(22)
         }
 
         createNickname.snp.makeConstraints { make in
             make.top.equalTo(findPW.snp.bottom).offset(28)
-            make.left.equalToSuperview().inset(213)
-            make.right.equalToSuperview().inset(65)
+            make.leading.equalToSuperview().inset(213)
+            make.trailing.equalToSuperview().inset(65)
             make.height.equalTo(22)
         }
         
         separatorLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(378)
-            make.left.equalToSuperview().inset(180)
-            make.right.equalToSuperview().inset(195)
+            make.leading.equalToSuperview().inset(180)
+            make.trailing.equalToSuperview().inset(195)
             make.height.equalTo(12)
         }
     }
@@ -319,17 +319,15 @@ final class LoginViewController: UIViewController {
         self.updateLoginButtonAppearance(isEnabled: isEnabled)
     }
 
-    @objc func loginButtonDidTap() {
+    @objc private func loginButtonDidTap() {
         guard let id = idTextField.text, !id.isEmpty else {
             return
         }
-        
-        let welcomeViewController = WelcomeViewController()
-        welcomeViewController.id = id
+
+        let welcomeViewModel = WelcomeViewModel(id: id)
+        let welcomeViewController = WelcomeViewController(viewModel: welcomeViewModel)
         if let navigationController = self.navigationController {
             navigationController.pushViewController(welcomeViewController, animated: true)
-        } else {
-
         }
     }
 }

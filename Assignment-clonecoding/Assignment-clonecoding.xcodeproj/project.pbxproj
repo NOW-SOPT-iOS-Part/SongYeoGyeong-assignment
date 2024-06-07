@@ -41,6 +41,7 @@
 		5CA73EB12C13290800AB8372 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 5CA73EB02C13290800AB8372 /* RxCocoa */; };
 		5CA73EB32C132E1700AB8372 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA73EB22C132E1700AB8372 /* ViewModel.swift */; };
 		5CA73EB52C13310600AB8372 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA73EB42C13310600AB8372 /* User.swift */; };
+		5CA73EB72C13449300AB8372 /* WelcomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA73EB62C13449300AB8372 /* WelcomeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +78,7 @@
 		5CA73EAD2C12FF9300AB8372 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		5CA73EB22C132E1700AB8372 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		5CA73EB42C13310600AB8372 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		5CA73EB62C13449300AB8372 /* WelcomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +136,7 @@
 				5CA73EAD2C12FF9300AB8372 /* Extension.swift */,
 				5CA73EB22C132E1700AB8372 /* ViewModel.swift */,
 				5CA73EB42C13310600AB8372 /* User.swift */,
+				5CA73EB62C13449300AB8372 /* WelcomeViewModel.swift */,
 			);
 			path = 2nd;
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C78FB4A2BE8032300E8499C /* MovieCollectionViewCell.swift in Sources */,
+				5CA73EB72C13449300AB8372 /* WelcomeViewModel.swift in Sources */,
 				5C2C30102BD2D28A0000A765 /* ViewController.swift in Sources */,
 				5C78FB0B2BE0B86A00E8499C /* ExpectedController.swift in Sources */,
 				5C78FB132BE0DD2100E8499C /* TivingModel.swift in Sources */,

@@ -196,6 +196,7 @@ final class LoginViewController: UIViewController {
         setUpLayout()
         setUpConstraint()
         bindTextFields()
+        setupBindings()
         updateLoginButtonState()
     }
     
@@ -329,5 +330,60 @@ final class LoginViewController: UIViewController {
         if let navigationController = self.navigationController {
             navigationController.pushViewController(welcomeViewController, animated: true)
         }
+    }
+
+    // MARK: - Seperate Rx Binding Functions
+    private func bindIdTextField() {
+        idTextField.rx.text.orEmpty
+            .subscribe(onNext: { [weak self] _ in
+                self?.updateLoginButtonState()
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindPasswordTextField() {
+        passwordTextField.rx.text.orEmpty
+            .subscribe(onNext: { [weak self] _ in
+                self?.updateLoginButtonState()
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindClearButtons() {
+        if let clearButton = idTextField.rightView as? UIButton {
+            clearButton.rx.tap
+                .subscribe(onNext: { [weak self] in
+                    self?.idTextField.text = ""
+                    self?.updateLoginButtonState()
+                })
+                .disposed(by: disposeBag)
+        }
+        
+        if let clearButton = passwordTextField.rightView?.subviews.compactMap({ $0 as? UIButton }).last {
+            clearButton.rx.tap
+                .subscribe(onNext: { [weak self] in
+                    self?.passwordTextField.text = ""
+                    self?.updateLoginButtonState()
+                })
+                .disposed(by: disposeBag)
+        }
+    }
+    
+    private func bindEyeButton() {
+        if let eyeButton = passwordTextField.rightView?.subviews.compactMap({ $0 as? UIButton }).first {
+            eyeButton.rx.tap
+                .subscribe(onNext: { [weak self] in
+                    eyeButton.isSelected.toggle()
+                    self?.passwordTextField.isSecureTextEntry.toggle()
+                })
+                .disposed(by: disposeBag)
+        }
+    }
+    
+    private func setupBindings() {
+        bindIdTextField()
+        bindPasswordTextField()
+        bindClearButtons()
+        bindEyeButton()
     }
 }

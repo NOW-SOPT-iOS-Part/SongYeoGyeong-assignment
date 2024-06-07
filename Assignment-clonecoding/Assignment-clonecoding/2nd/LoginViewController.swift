@@ -8,28 +8,33 @@
 import Foundation
 import SnapKit
 import UIKit
+import RxSwift
+import RxCocoa
 
-final class LoginView: UIViewController, UITextFieldDelegate {
+final class LoginViewController: UIViewController {
     
+    private let disposeBag = DisposeBag()
+    
+    // MARK: UI
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "TIVING ID 로그인"
-        label.textColor = UIColor(red: 214/255, green: 214/255, blue: 214/255, alpha: 1.0)
+        label.textColor = .gray214
         label.textAlignment = .center
         label.numberOfLines = 1
-        label.font = UIFont(name:"Pretendard-Medium", size: 23)
+        label.font = .pretendard(.medium, size: 23)
         return label
     }()
     
     private lazy var idTextField: UITextField = {
         let textField = UITextField()
-        textField.textColor = UIColor(red: 156/255, green: 156/255, blue: 156/255, alpha: 1)
-        textField.font = UIFont(name:"Pretendard-SemiBold", size: 15)
-        textField.backgroundColor = UIColor(red: 46/255, green: 46/255, blue: 46/255, alpha: 1)
+        textField.textColor = .gray156
+        textField.font = .pretendard(.semiBold, size: 15)
+        textField.backgroundColor = .gray46
         
         let placeholderAttributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: UIColor.white.withAlphaComponent(0.2),
-            .font: UIFont(name: "Pretendard-SemiBold", size: 15) ?? UIFont.systemFont(ofSize: 15)
+            .font: UIFont.pretendard(.semiBold, size: 15)
         ]
         
         textField.attributedPlaceholder = NSAttributedString(string: "아이디", attributes: placeholderAttributes)
@@ -39,31 +44,30 @@ final class LoginView: UIViewController, UITextFieldDelegate {
         textField.leftViewMode = .always
         
         let clearButton = UIButton(type: .custom)
-            clearButton.setImage(UIImage(named: "X"), for: .normal)
-            clearButton.addTarget(self, action: #selector(clearText), for: .touchUpInside)
-            clearButton.frame = CGRect(x: 0, y: 0, width: 5, height: 5)
-            textField.rightView = clearButton
-            textField.rightViewMode = .whileEditing
+        clearButton.setImage(UIImage(named: "X"), for: .normal)
+        clearButton.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+        textField.rightView = clearButton
+        textField.rightViewMode = .whileEditing
+        
+        clearButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                textField.text = ""
+                self?.updateLoginButtonState()
+            })
+            .disposed(by: disposeBag)
         
         return textField
     }()
-
-    @objc func clearText(sender: UIButton) {
-        if let textField = sender.superview as? UITextField {
-            textField.text = ""
-            updateLoginButtonState()
-        }
-    }
     
     private lazy var passwordTextField: UITextField = {
         let textField = UITextField()
-        textField.textColor = UIColor(red: 156/255, green: 156/255, blue: 156/255, alpha: 1)
-        textField.font = UIFont(name: "Pretendard-SemiBold", size: 15)
-        textField.backgroundColor = UIColor(red: 46/255, green: 46/255, blue: 46/255, alpha: 1)
+        textField.textColor = .gray156
+        textField.font = .pretendard(.semiBold, size: 15)
+        textField.backgroundColor = .gray46
         
         let placeholderAttributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: UIColor.white.withAlphaComponent(0.2),
-            .font: UIFont(name: "Pretendard-SemiBold", size: 15) ?? UIFont.systemFont(ofSize: 15)
+            .foregroundColor: UIColor.gray156,
+            .font: UIFont.pretendard(.semiBold, size: 15)
         ]
         textField.attributedPlaceholder = NSAttributedString(string: "비밀번호", attributes: placeholderAttributes)
         
@@ -78,12 +82,23 @@ final class LoginView: UIViewController, UITextFieldDelegate {
         let eyeButton = UIButton(type: .custom)
         eyeButton.setImage(UIImage(named: "EyesO"), for: .normal)
         eyeButton.setImage(UIImage(named: "EyesX"), for: .selected)
-        eyeButton.addTarget(self, action: #selector(togglePasswordView), for: .touchUpInside)
+        
+        eyeButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                eyeButton.isSelected.toggle()
+                textField.isSecureTextEntry.toggle()
+            })
+            .disposed(by: disposeBag)
 
         let clearButton = UIButton(type: .custom)
         clearButton.setImage(UIImage(named: "X"), for: .normal)
-        clearButton.addTarget(self, action: #selector(clearText), for: .touchUpInside)
-
+        
+        clearButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                textField.text = ""
+                self?.updateLoginButtonState()
+            })
+            .disposed(by: disposeBag)
 
         rightViewContainer.addSubview(clearButton)
         rightViewContainer.addSubview(eyeButton)
@@ -107,11 +122,6 @@ final class LoginView: UIViewController, UITextFieldDelegate {
 
         return textField
     }()
-
-    @objc func togglePasswordView(_ sender: UIButton) {
-        sender.isSelected.toggle()
-        passwordTextField.isSecureTextEntry.toggle()
-    }
     
     private lazy var loginButton: UIButton = {
         let button = UIButton()
@@ -121,10 +131,15 @@ final class LoginView: UIViewController, UITextFieldDelegate {
         button.titleLabel?.font = UIFont(name: "Pretendard-SemiBold", size: 18)
         button.layer.borderColor = UIColor(red: 46/255, green: 46/255, blue: 46/255, alpha: 1).cgColor
         button.layer.borderWidth = 1
-        button.addTarget(self, action: #selector(loginButtonDidTap), for: .touchUpInside)
+
+        button.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.loginButtonDidTap()
+            })
+            .disposed(by: disposeBag)
+        
         return button
     }()
-    
     
     private let findID: UIButton = {
         let button = UIButton()
@@ -143,7 +158,6 @@ final class LoginView: UIViewController, UITextFieldDelegate {
         return label
     }()
 
-    
     private let findPW: UIButton = {
         let button = UIButton()
         button.setTitle("비밀번호 찾기", for: .normal)
@@ -161,7 +175,6 @@ final class LoginView: UIViewController, UITextFieldDelegate {
         return label
     }()
     
-    
     private let createNickname: UIButton = {
         let button = UIButton()
         let attributes: [NSAttributedString.Key: Any] = [
@@ -176,37 +189,66 @@ final class LoginView: UIViewController, UITextFieldDelegate {
         return button
     }()
     
+    // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        idTextField.delegate = self
-        passwordTextField.delegate = self
-        
         self.view.backgroundColor = .black
-        setLayout()
+        setUpLayout()
+        setUpConstraint()
+        bindTextFields()
         updateLoginButtonState()
     }
     
-    @objc func loginButtonDidTap() {
-        guard let id = idTextField.text, !id.isEmpty else {
-            return
-        }
+    private func bindTextFields() {
+        let idTextObservable = idTextField.rx.text.orEmpty.asObservable()
+        let passwordTextObservable = passwordTextField.rx.text.orEmpty.asObservable()
         
-        let welcomeViewController = WelcomeViewController()
-        welcomeViewController.id = id
-        if let navigationController = self.navigationController {
-            navigationController.pushViewController(welcomeViewController, animated: true)
+        Observable.combineLatest(idTextObservable, passwordTextObservable)
+            .map { id, password in
+                return !id.isEmpty && password.count >= 4
+            }
+            .bind(to: loginButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        Observable.combineLatest(idTextObservable, passwordTextObservable)
+            .map { id, password in
+                return !id.isEmpty && password.count >= 4
+            }
+            .subscribe(onNext: { [weak self] isEnabled in
+                self?.updateLoginButtonAppearance(isEnabled: isEnabled)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func updateLoginButtonAppearance(isEnabled: Bool) {
+        if isEnabled {
+            loginButton.backgroundColor = UIColor(red: 255/255, green: 20/255, blue: 60/255, alpha: 1)
+            loginButton.setTitleColor(UIColor.white, for: .normal)
         } else {
-
+            loginButton.backgroundColor = UIColor.black
+            loginButton.setTitleColor(UIColor(red: 156/255, green: 156/255, blue: 156/255, alpha: 1), for: .normal)
         }
     }
-
     
-    private func setLayout() {
-        [titleLabel, idTextField, passwordTextField, loginButton, findID, findPW, separatorLabel, noAccount, createNickname].forEach {
+    // MARK: - setUpLayout
+    private func setUpLayout() {
+        [
+            titleLabel,
+            idTextField,
+            passwordTextField,
+            loginButton,
+            findID,
+            findPW,
+            separatorLabel,
+            noAccount,
+            createNickname
+        ].forEach {
             self.view.addSubview($0)
         }
-        
+    }
+    
+    // MARK: - setUpConstraint
+    private func setUpConstraint() {
         titleLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalToSuperview().offset(90)
@@ -270,54 +312,24 @@ final class LoginView: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let currentText = textField.text ?? ""
-        guard let stringRange = Range(range, in: currentText) else { return false }
-        let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
-
-        DispatchQueue.main.async {
-            self.updateLoginButtonState()
-        }
-
-        return true
-    }
-
-
-    
     private func updateLoginButtonState() {
-        DispatchQueue.main.async {
-            let isIdNotEmpty = !(self.idTextField.text?.isEmpty ?? true)
-            let isPasswordValid = (self.passwordTextField.text?.count ?? 0) >= 4
-            let isEnabled = isIdNotEmpty && isPasswordValid
-            self.loginButton.isEnabled = isEnabled
-            if isEnabled {
-                self.loginButton.backgroundColor = UIColor(red: 255/255, green: 20/255, blue: 60/255, alpha: 1)
-                self.loginButton.setTitleColor(UIColor.white, for: .normal)
-            } else {
-                self.loginButton.backgroundColor = UIColor.black
-                self.loginButton.setTitleColor(UIColor(red: 156/255, green: 156/255, blue: 156/255, alpha: 1), for: .normal)
-            }
+        let isIdNotEmpty = !(self.idTextField.text?.isEmpty ?? true)
+        let isPasswordValid = (self.passwordTextField.text?.count ?? 0) >= 4
+        let isEnabled = isIdNotEmpty && isPasswordValid
+        self.updateLoginButtonAppearance(isEnabled: isEnabled)
+    }
+
+    @objc func loginButtonDidTap() {
+        guard let id = idTextField.text, !id.isEmpty else {
+            return
+        }
+        
+        let welcomeViewController = WelcomeViewController()
+        welcomeViewController.id = id
+        if let navigationController = self.navigationController {
+            navigationController.pushViewController(welcomeViewController, animated: true)
+        } else {
+
         }
     }
-
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.layer.borderWidth = 1
-        textField.layer.borderColor = UIColor(red: 0.612, green: 0.612, blue: 0.612, alpha: 1).cgColor
-        textField.layer.cornerRadius = 3
-    }
-
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        textField.layer.borderWidth = 0
-        textField.layer.borderColor = UIColor.clear.cgColor
-        updateLoginButtonState()
-    }
-
-    func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        DispatchQueue.main.async {
-            self.updateLoginButtonState()
-        }
-        return true
-    }
-
 }
-
